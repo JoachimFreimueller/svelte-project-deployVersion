@@ -13,7 +13,7 @@
 
     function filterProducts()
     {
-        filteredProducts = products.filter((value) => value.title.includes(searchText));
+        filteredProducts = products.filter((value) => value.title.toLowerCase().includes(searchText.toLowerCase()));
     }
 
 
@@ -23,7 +23,7 @@
 <div class="p-8 bg-gray-50 min-h-screen">
     <h1 class="text-3xl font-bold mb-6 text-gray-800">🛒 Shopfner</h1>
 
-    <input bind:value={searchText} onkeydown={() => filterProducts()}
+    <input bind:value={searchText} on:input={() => filterProducts()}
     type="text"
     placeholder="Suche nach Produkten..."
     class="w-full sm:w-1/2 px-4 py-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
