@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+    import Product from "../Components/Product.svelte";
+
+
+    let name = "Moin";
+    let price = 24.99;
+
+</script>
+
+
+<Product name = {name} price = {price}></Product>
+
+
