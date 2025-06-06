@@ -1,9 +1,11 @@
 <script>
+    import { goto } from '$app/navigation';
 
     let {id, title, price, description, imageSource, rating, category} = $props();
     function showDetails()
     {
         //route switch
+            goto("/Details");
     }
 
 </script>
