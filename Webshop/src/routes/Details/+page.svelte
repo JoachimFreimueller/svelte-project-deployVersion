@@ -1,5 +1,6 @@
 
 <script>
+    import { goto } from "$app/navigation";
     import { onMount } from "svelte";
 
     let product = "";
@@ -25,9 +26,23 @@ onMount(() => {
         localStorage.setItem('storedProducts', JSON.stringify(storedProducts))
 
 		alert(`${product.title} wurde zum Warenkorb hinzugefügt.`);
+
+        goto("../");
 	}
 
+    function goHome()
+    {
+        goto("../");
+    }
+
 </script>
+
+<button onclick={() => goHome()}
+	class="mt-8 ml-4 flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium px-4 py-2 rounded-xl shadow-sm transition duration-300">
+	<span>Zurück zur Startseite</span>
+</button>
+
+
 {#if product}
 	<div class="max-w-5xl mx-auto mt-10 bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row transition-all duration-300">
 		<!-- Bild -->
@@ -50,7 +65,7 @@ onMount(() => {
 
 			<!-- Button -->
 			<button
-				on:click={addToCart}
+				onclick={() => addToCart()}
 				class="mt-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-300"
 			>
 				In den Warenkorb

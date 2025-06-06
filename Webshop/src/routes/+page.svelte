@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import Product from "../Components/Product.svelte";
+    import { goto } from "$app/navigation";
 
     let products =$state([]);
     let filteredProducts = $state([]);
@@ -16,14 +17,31 @@
         filteredProducts = products.filter((value) => value.title.toLowerCase().includes(searchText.toLowerCase()));
     }
 
+    function goToCart() {
+		goto("/Cart");
+	}
+
 
 </script>
 
+<!-- Header mit Button oben rechts -->
+
 
 <div class="p-8 bg-gray-50 min-h-screen">
-    <h1 class="text-3xl font-bold mb-6 text-gray-800">🛒 Shopfner</h1>
 
-    <input bind:value={searchText} on:input={() => filterProducts()}
+<div class="flex justify-between items-center mb-6 w-full">
+	<h1 class="text-3xl font-bold text-gray-800">🛒 Shopfner</h1>
+	<button
+		onclick={() => (goToCart())}
+		class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl shadow-md transition"
+	>
+		<span>Warenkorb</span>
+	</button>
+</div>
+
+
+
+    <input bind:value={searchText} oninput={() => filterProducts()}
     type="text"
     placeholder="Suche nach Produkten..."
     class="w-full sm:w-1/2 px-4 py-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
