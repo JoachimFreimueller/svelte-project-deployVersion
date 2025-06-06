@@ -1,10 +1,11 @@
 <script>
     import { goto } from '$app/navigation';
 
-    let {id, title, price, description, imageSource, rating, category} = $props();
+    let {id, title, price, description, imageSource, rating, category, product} = $props();
     function showDetails()
     {
         //route switch
+        localStorage.setItem('selectedProduct', JSON.stringify(product));
             goto("/Details");
     }
 

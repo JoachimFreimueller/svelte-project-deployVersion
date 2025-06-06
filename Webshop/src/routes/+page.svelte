@@ -34,12 +34,12 @@
         {#if searchText == false}
 
         {#each products as product}
-        <Product id = {product.id} title = {product.title} price = {product.price} description = {product.description} imageSource = {product.image} rating = {product.rating} category = {product.category}></Product>
+        <Product id = {product.id} title = {product.title} price = {product.price} description = {product.description} imageSource = {product.image} rating = {product.rating} category = {product.category} product = {product}></Product>
         {/each} 
 
         {:else}
         {#each filteredProducts as product}
-        <Product id = {product.id} title = {product.title} price = {product.price} description = {product.description} imageSource = {product.image} rating = {product.rating} category = {product.category}></Product>
+        <Product id = {product.id} title = {product.title} price = {product.price} description = {product.description} imageSource = {product.image} rating = {product.rating} category = {product.category} product = {product}></Product>
         {/each}         
         {/if}
     
