@@ -13,6 +13,17 @@ onMount(() => {
 
 
     function addToCart() {
+
+
+        let storedProducts = [];
+        const stored = localStorage.getItem('storedProducts');
+		if (stored) {
+			storedProducts = JSON.parse(stored);
+		}
+
+        storedProducts.push(product);
+        localStorage.setItem('storedProducts', JSON.stringify(storedProducts))
+
 		alert(`${product.title} wurde zum Warenkorb hinzugefügt.`);
 	}
 
