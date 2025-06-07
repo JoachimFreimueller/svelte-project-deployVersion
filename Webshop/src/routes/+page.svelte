@@ -6,10 +6,21 @@
     let products =$state([]);
     let filteredProducts = $state([]);
     let searchText = $state("");
+    let categories = $state([]);
+    let selectedCategories = $state([]);
 
         onMount(async () => {
         let response = await fetch("https://fakestoreapi.com/products");
         products = await response.json();
+
+        for(let i = 0; i < products.length; i++)
+        {
+            if(!categories.includes(products[i].category))
+            {
+                categories.push(products[i].category);
+            }
+        }
+
     });
 
     function filterProducts()
@@ -20,6 +31,19 @@
     function goToCart() {
 		goto("/Cart");
 	}
+
+    function categorySelected(selectedCategory)
+    {
+        if(selectedCategories.includes(selectedCategory))
+        {
+            let indexToRemove = selectedCategories.indexOf(selectedCategory);
+            selectedCategories.splice(indexToRemove, 1);
+        }
+        else
+        {
+            selectedCategories.push(selectedCategory);
+        }
+    }
 
 
 </script>
@@ -46,6 +70,20 @@
     placeholder="Suche nach Produkten..."
     class="w-full sm:w-1/2 px-4 py-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
   />
+
+  {#each categories as category}
+     	<button
+			onclick={() => categorySelected(category)}
+			class={`px-4 py-2 rounded-full text-sm font-medium shadow-sm transition 
+                ${
+					selectedCategories.includes(category)
+						? "bg-blue-600 text-white"
+						: "bg-gray-200 text-gray-800 hover:bg-blue-100"
+				}`}
+		>
+			{category}
+		</button>
+  {/each}
   
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         
