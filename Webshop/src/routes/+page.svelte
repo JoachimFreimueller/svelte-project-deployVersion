@@ -25,7 +25,38 @@
 
     function filterProducts()
     {
-        filteredProducts = products.filter((value) => value.title.toLowerCase().includes(searchText.toLowerCase()));
+
+        filteredProducts = products.filter((value) => {
+
+            if(selectedCategories.length === 0)
+            {
+                 if(value.title.toLowerCase().includes(searchText.toLowerCase()))
+                 {
+                    return true;
+                 }
+            }
+            else{
+
+                if(searchText == false)
+            {
+                 if(selectedCategories.includes(value.category))
+                {
+                    return true;
+                }
+            }
+            else
+            {
+
+                 if(value.title.toLowerCase().includes(searchText.toLowerCase()) && selectedCategories.includes(value.category))
+                {
+                    return true;
+                }
+            }
+
+            }   
+            return false;
+         
+        });
     }
 
     function goToCart() {
@@ -43,6 +74,8 @@
         {
             selectedCategories.push(selectedCategory);
         }
+
+        filterProducts();
     }
 
 
@@ -89,9 +122,18 @@
         
         {#if searchText == false}
 
-        {#each products as product}
+        {#if selectedCategories.length > 0}
+             
+           {#each filteredProducts as product}
         <Product id = {product.id} title = {product.title} price = {product.price} description = {product.description} imageSource = {product.image} rating = {product.rating} category = {product.category} product = {product}></Product>
-        {/each} 
+        {/each}  
+
+        {:else}
+         {#each products as product}
+            <Product id = {product.id} title = {product.title} price = {product.price} description = {product.description} imageSource = {product.image} rating = {product.rating} category = {product.category} product = {product}></Product>
+            {/each} 
+
+        {/if}
 
         {:else}
         {#each filteredProducts as product}
