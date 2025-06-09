@@ -22,10 +22,13 @@ onMount(() => {
 
 </script>
 
-<button onclick={() => goHome()}
-	class="mt-8 ml-4 flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium px-4 py-2 rounded-xl shadow-sm transition duration-300">
-	<span>Zurück zur Startseite</span>
+<button
+	onclick={() => goHome()}
+	class="mt-8 ml-4 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-xl shadow-md transition duration-300"
+>
+	← Zurück zur Startseite
 </button>
+
 
 
 {#if product}

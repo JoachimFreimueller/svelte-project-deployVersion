@@ -13,7 +13,6 @@
 
     </script>
     
-    <div class="p-8 bg-gray-50 min-h-screen">
         <h1 class="text-3xl font-bold mb-10 text-gray-800">
             🛒 Dein Warenkorb
         </h1>
@@ -62,4 +61,3 @@
 	</div>
 </div>
 
-    </div>

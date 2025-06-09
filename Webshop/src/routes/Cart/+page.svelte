@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import ProductsList from "../../Components/ProductsList.svelte";
+    import { goto } from "$app/navigation";
  
     let productsWithButtons = $state([]);
 
@@ -17,6 +18,17 @@
 
 </script>
 
+<div class="p-6 bg-gray-50 min-h-screen">
+
+	<button
+		onclick={() => goto("../")}
+		class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl shadow-md transition duration-300"
+	>
+		← Zurück zur Startseite
+	</button>
+
+    <br>
+
 {#if productsWithButtons.length > 0}
 
  <ProductsList productsWithButtons = {productsWithButtons}/>
@@ -26,3 +38,5 @@
         Dein Warenkorb ist leer.
     </p>
 {/if}
+
+</div>
