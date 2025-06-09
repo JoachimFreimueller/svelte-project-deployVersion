@@ -4,7 +4,7 @@
     import { onMount } from "svelte";
     import ProductDetail from "../../Components/ProductDetail.svelte";
 
-    let product = "";
+    let product = $state("");
 
 onMount(() => {
 		const stored = localStorage.getItem('selectedProduct');
