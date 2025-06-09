@@ -1,6 +1,9 @@
 	<script>
+    import { goto } from "$app/navigation";
+
 
         let {product} = $props();
+        let showDialog = $state(false);
 
         function addToCart() {
 
@@ -14,10 +17,8 @@
         storedProducts.push(product);
         localStorage.setItem('storedProducts', JSON.stringify(storedProducts))
 
-		alert(`${product.title} wurde zum Warenkorb hinzugefügt.`);
-
-        goto("../");
-	}
+		showDialog = true;
+    	}
 
     </script>
     
@@ -50,3 +51,18 @@
 			</button>
 		</div>
 	</div>
+
+    {#if showDialog}
+	<div class="fixed inset-0 flex items-center justify-center z-50">
+		<div class="bg-white rounded-2xl shadow-xl p-6 w-[90%] max-w-sm text-center">
+			<h2 class="text-lg font-semibold text-gray-800 mb-2">✔️ Produkt hinzugefügt!</h2>
+			<p class="text-gray-600 mb-4">„{product.title}“ wurde erfolgreich zum Warenkorb hinzugefügt.</p>
+			<button
+				onclick={() => goto("../")}
+				class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
+			>
+				Zurück zum Shop
+			</button>
+		</div>
+	</div>
+{/if}
