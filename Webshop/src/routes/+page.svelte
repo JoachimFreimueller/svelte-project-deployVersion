@@ -9,19 +9,30 @@
     let categories = $state([]);
     let selectedCategories = $state([]);
 
-        onMount(async () => {
-        let response = await fetch("https://fakestoreapi.com/products");
-        products = await response.json();
+    let errorMessage = "Die Produkte konnten nicht geladen werden. Bitte versuche es später erneut.";
+    let errorOccured = $state(false);
 
-        for(let i = 0; i < products.length; i++)
-        {
-            if(!categories.includes(products[i].category))
-            {
-                categories.push(products[i].category);
-            }
-        }
+      	onMount(async () => {
+		try {
+			const response = await fetch("https://fakestoreapi.com/products");
+			if (!response.ok) {
+				throw new Error(`Fehler beim Laden der Produkte: ${response.status}`);
+			}
 
-    });
+			products = await response.json();
+
+			for (let i = 0; i < products.length; i++) {
+				if (!categories.includes(products[i].category)) {
+					categories.push(products[i].category);
+				}
+			}
+		} catch (error) {
+			
+            errorOccured = true;
+			console.error(error);
+		}
+	});
+
 
     function filterProducts()
     {
@@ -142,6 +153,15 @@
         {/if}
     
     </div>
+
+    <br>
+
+    {#if errorOccured}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-xl mb-6 text-sm sm:text-base shadow-sm">
+        <strong class="font-semibold">Fehler:</strong> {errorMessage}
+    </div>
+{/if}
+
 </div>
 
 
