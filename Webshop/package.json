@@ -8,7 +8,9 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"deploy": "npm run build && npx gh-pages -d build -t true"
+		
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
