@@ -1,14 +1,24 @@
 import adapter from '@sveltejs/adapter-static';
- 
-/** @type {imdwqdport('@sveltejs/kit').Config} */
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+
+/** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: {
-		adapter: adapter({
-			fallback: '404.html'
-		})
-	},
+  preprocess: vitePreprocess(),
+
+  kit: {
+    adapter: adapter({
+      // Standard-Output Ordner ist 'build'
+      pages: 'build',
+      assets: 'build',
+      fallback: '404.html', // Wichtig für Single Page Apps (SPA)
+      precompress: false,
+      strict: true
+    }),
+    paths: {
+      // ERSETZE 'svelte-project-deployVersion' mit deinem exakten Repository-Namen
+      base: process.env.NODE_ENV === 'production' ? '/svelte-project-deployVersion' : '',
+    }
+  }
 };
- 
-config.paths = { base: process.argv.includes('dev') ? '' : "/svelte-project-deployVersion" }
- 
+
 export default config;
