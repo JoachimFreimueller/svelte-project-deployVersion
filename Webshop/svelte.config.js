@@ -15,8 +15,8 @@ const config = {
       strict: true
     }),
     paths: {
-      // ERSETZE 'svelte-project-deployVersion' mit deinem exakten Repository-Namen
-      base: process.env.NODE_ENV === 'production' ? '/svelte-project-deployVersion' : '',
+      // ERSETZE 'shopfner' mit deinem exakten Repository-Namen
+      base: process.env.NODE_ENV === 'production' ? '/shopfner' : '',
 	  relative: false
     }
   }
