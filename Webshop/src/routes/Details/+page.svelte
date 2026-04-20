@@ -1,25 +1,21 @@
-
 <script>
-    import { goto } from "$app/navigation";
-    import { onMount } from "svelte";
-    import ProductDetail from "../../Components/ProductDetail.svelte";
+	import { goto } from "$app/navigation";
+	import { onMount } from "svelte";
+	import ProductDetail from "../../Components/ProductDetail.svelte";
+	import { base } from "$app/paths"; // WICHTIG
 
-    let product = $state("");
+	let product = $state("");
 
-onMount(() => {
-		const stored = localStorage.getItem('selectedProduct');
+	onMount(() => {
+		const stored = localStorage.getItem("selectedProduct");
 		if (stored) {
 			product = JSON.parse(stored);
 		}
 	});
 
-
- 
-    function goHome()
-    {
-        goto("../");
-    }
-
+	function goHome() {
+		goto(base);
+	}
 </script>
 
 <button
@@ -29,10 +25,11 @@ onMount(() => {
 	← Zurück zur Startseite
 </button>
 
-
-
 {#if product}
-	<ProductDetail product = {product}/>
+	<ProductDetail {product} />
 {:else}
-	<p class="text-center mt-20 text-gray-500 text-lg">Kein Produkt gefunden. Bitte über die Übersichtseite ein Produkt auswählen.</p>
+	<p class="text-center mt-20 text-gray-500 text-lg">
+		Kein Produkt gefunden. Bitte über die Übersichtseite ein Produkt
+		auswählen.
+	</p>
 {/if}
