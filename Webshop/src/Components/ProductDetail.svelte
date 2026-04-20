@@ -76,7 +76,7 @@
 				„{product.title}“ wurde erfolgreich zum Warenkorb hinzugefügt.
 			</p>
 			<button
-				onclick={() => goto(`${base}`)}
+				onclick={() => goto(`${base}/`)}
 				class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
 			>
 				Zurück zum Shop

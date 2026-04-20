@@ -14,7 +14,7 @@
 	});
 
 	function goHome() {
-		goto(base);
+		goto(`${base}/`);
 	}
 </script>
 
